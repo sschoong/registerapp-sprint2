@@ -39,9 +39,9 @@ public class LandingActivity extends AppCompatActivity {
 	public void signInButtonOnClick(View view) {
 		if (StringUtils.isBlank(this.getEmployeeIdEditText().getText().toString())) {
 			new AlertDialog.Builder(this).
-				setMessage(R.string.alert_dialog_employee_id_empty).
-				create().
-				show();
+					setMessage(R.string.alert_dialog_employee_id_empty).
+					create().
+					show();
 			this.getEmployeeIdEditText().requestFocus();
 
 			return;
@@ -49,9 +49,9 @@ public class LandingActivity extends AppCompatActivity {
 
 		if (StringUtils.isBlank(this.getPasswordEditText().getText().toString())) {
 			new AlertDialog.Builder(this).
-				setMessage(R.string.alert_dialog_employee_password_empty).
-				create().
-				show();
+					setMessage(R.string.alert_dialog_employee_password_empty).
+					create().
+					show();
 			this.getPasswordEditText().requestFocus();
 
 			return;
@@ -59,9 +59,9 @@ public class LandingActivity extends AppCompatActivity {
 
 		//TODO: I need to hash the password.
 		(new SignInTask()).execute(
-			(new EmployeeLogin()).
-				setEmployeeId(this.getEmployeeIdEditText().getText().toString()).
-				setPassword(this.getPasswordEditText().getText().toString())
+				(new EmployeeLogin()).
+						setEmployeeId(this.getEmployeeIdEditText().getText().toString()).
+						setPassword(this.getPasswordEditText().getText().toString())
 		);
 	}
 
@@ -86,26 +86,26 @@ public class LandingActivity extends AppCompatActivity {
 			}
 
 			new AlertDialog.Builder(LandingActivity.this).
-				setMessage(R.string.alert_dialog_no_employees_exist).
-				setPositiveButton(
-					R.string.button_ok,
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							startActivity(new Intent(getApplicationContext(), CreateEmployeeActivity.class));
+					setMessage(R.string.alert_dialog_no_employees_exist).
+					setPositiveButton(
+							R.string.button_ok,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									startActivity(new Intent(getApplicationContext(), CreateEmployeeActivity.class));
 
-							dialog.dismiss();
-						}
-					}
-				).
-				create().
-				show();
+									dialog.dismiss();
+								}
+							}
+					).
+					create().
+					show();
 		}
 
 		private boolean activeEmployeeExists(ActiveEmployeeCounts activeEmployeeCounts) {
 			return (
-				(activeEmployeeCounts.getActiveCashierCount() > 0) ||
-				(activeEmployeeCounts.getActiveShiftManagerCount() > 0) ||
-				(activeEmployeeCounts.getActiveGeneralManagerCount() > 0)
+					(activeEmployeeCounts.getActiveCashierCount() > 0) ||
+							(activeEmployeeCounts.getActiveShiftManagerCount() > 0) ||
+							(activeEmployeeCounts.getActiveGeneralManagerCount() > 0)
 			);
 		}
 	}
@@ -114,8 +114,8 @@ public class LandingActivity extends AppCompatActivity {
 		@Override
 		protected void onPreExecute() {
 			this.signInAlert = new AlertDialog.Builder(LandingActivity.this).
-				setMessage(R.string.alert_dialog_signing_in).
-				create();
+					setMessage(R.string.alert_dialog_signing_in).
+					create();
 			this.signInAlert.show();
 		}
 
@@ -131,7 +131,7 @@ public class LandingActivity extends AppCompatActivity {
 				return (new EmployeeService()).logIn(employeeLogins[0]);
 			} else {
 				return (new Employee()).
-					setApiRequestStatus(EmployeeApiRequestStatus.NOT_FOUND);
+						setApiRequestStatus(EmployeeApiRequestStatus.NOT_FOUND);
 			}
 		}
 
@@ -141,17 +141,17 @@ public class LandingActivity extends AppCompatActivity {
 
 			if (employee.getApiRequestStatus() != EmployeeApiRequestStatus.OK) {
 				new AlertDialog.Builder(LandingActivity.this).
-					setMessage(R.string.alert_dialog_employee_sign_in_failed).
-					create().
-					show();
+						setMessage(R.string.alert_dialog_employee_sign_in_failed).
+						create().
+						show();
 				return;
 			}
 
 			Intent intent = new Intent(getApplicationContext(), MainActivity.class);
 
 			intent.putExtra(
-				getString(R.string.intent_extra_employee),
-				new EmployeeTransition(employee)
+					getString(R.string.intent_extra_employee),
+					new EmployeeTransition(employee)
 			);
 
 			startActivity(intent);

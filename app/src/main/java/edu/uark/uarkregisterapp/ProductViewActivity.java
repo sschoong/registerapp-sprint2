@@ -54,7 +54,7 @@ public class ProductViewActivity extends AppCompatActivity {
 		this.getProductLookupCodeEditText().setText(this.productTransition.getLookupCode());
 		this.getProductCountEditText().setText(String.format(Locale.getDefault(), "%d", this.productTransition.getCount()));
 		this.getProductCreatedOnEditText().setText(
-			(new SimpleDateFormat("MM/dd/yyyy", Locale.US)).format(this.productTransition.getCreatedOn())
+				(new SimpleDateFormat("MM/dd/yyyy", Locale.US)).format(this.productTransition.getCreatedOn())
 		);
 	}
 
@@ -64,13 +64,13 @@ public class ProductViewActivity extends AppCompatActivity {
 		}
 
 		this.savingProductAlert = new AlertDialog.Builder(this).
-			setMessage(R.string.alert_dialog_product_save).
-			create();
+				setMessage(R.string.alert_dialog_product_save).
+				create();
 
 		(new SaveActivityTask(
-			this,
-			this.getProductLookupCodeEditText().getText().toString(),
-			Integer.parseInt(this.getProductCountEditText().getText().toString())
+				this,
+				this.getProductLookupCodeEditText().getText().toString(),
+				Integer.parseInt(this.getProductCountEditText().getText().toString())
 		)).execute();
 	}
 
@@ -90,10 +90,10 @@ public class ProductViewActivity extends AppCompatActivity {
 		@Override
 		protected Boolean doInBackground(Void... params) {
 			Product product = (new ProductService()).putProduct(
-				(new Product()).
-					setId(productTransition.getId()).
-					setLookupCode(this.lookupCode).
-					setCount(this.count)
+					(new Product()).
+							setId(productTransition.getId()).
+							setLookupCode(this.lookupCode).
+							setCount(this.count)
 			);
 
 			if (product.getApiRequestStatus() == ProductApiRequestStatus.OK) {
@@ -117,17 +117,17 @@ public class ProductViewActivity extends AppCompatActivity {
 			}
 
 			new AlertDialog.Builder(this.activity).
-				setMessage(message).
-				setPositiveButton(
-					R.string.button_dismiss,
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.dismiss();
-						}
-					}
-				).
-				create().
-				show();
+					setMessage(message).
+					setPositiveButton(
+							R.string.button_dismiss,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									dialog.dismiss();
+								}
+							}
+					).
+					create().
+					show();
 		}
 
 		private int count;
@@ -167,17 +167,17 @@ public class ProductViewActivity extends AppCompatActivity {
 
 		if (!inputIsValid) {
 			new AlertDialog.Builder(this).
-				setMessage(validationMessage).
-				setPositiveButton(
-					R.string.button_dismiss,
-					new DialogInterface.OnClickListener() {
-						public void onClick(DialogInterface dialog, int id) {
-							dialog.dismiss();
-						}
-					}
-				).
-				create().
-				show();
+					setMessage(validationMessage).
+					setPositiveButton(
+							R.string.button_dismiss,
+							new DialogInterface.OnClickListener() {
+								public void onClick(DialogInterface dialog, int id) {
+									dialog.dismiss();
+								}
+							}
+					).
+					create().
+					show();
 		}
 
 		return inputIsValid;

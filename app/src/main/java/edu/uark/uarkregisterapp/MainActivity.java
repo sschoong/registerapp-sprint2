@@ -14,60 +14,60 @@ import android.widget.TextView;
 import edu.uark.uarkregisterapp.models.transition.EmployeeTransition;
 
 public class MainActivity extends AppCompatActivity {
-	@Override
-	protected void onCreate(Bundle savedInstanceState) {
-		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
-		setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
 
-		this.employeeTransition = this.getIntent().getParcelableExtra(this.getString(R.string.intent_extra_employee));
-	}
+        this.employeeTransition = this.getIntent().getParcelableExtra(this.getString(R.string.intent_extra_employee));
+    }
 
-	@Override
-	protected void onStart() {
-		super.onStart();
+    @Override
+    protected void onStart() {
+        super.onStart();
 
-		this.getEmployeeWelcomeTextView().setText("Welcome " + this.employeeTransition.getFirstName() + " (" + this.employeeTransition.getEmployeeId() + ")!");
-	}
+        this.getEmployeeWelcomeTextView().setText("Welcome " + this.employeeTransition.getFirstName() + " (" + this.employeeTransition.getEmployeeId() + ")!");
+    }
 
-	public void beginTransactionButtonOnClick(View view) {
-		this.displayFunctionalityNotAvailableDialog();
-	}
+    public void beginTransactionButtonOnClick(View view) {
+        this.displayFunctionalityNotAvailableDialog();
+    }
 
-	public void productSalesReportButtonOnClick(View view) {
-		this.displayFunctionalityNotAvailableDialog();
-	}
+    public void productSalesReportButtonOnClick(View view) {
+        this.displayFunctionalityNotAvailableDialog();
+    }
 
-	public void cashierSalesReportButtonOnClick(View view) {
-		this.displayFunctionalityNotAvailableDialog();
-	}
+    public void cashierSalesReportButtonOnClick(View view) {
+        this.displayFunctionalityNotAvailableDialog();
+    }
 
-	public void createEmployeeButtonOnClick(View view) {
-		this.displayFunctionalityNotAvailableDialog();
-	}
+    public void createEmployeeButtonOnClick(View view) {
+        this.displayFunctionalityNotAvailableDialog();
+    }
 
-	public void logOutButtonOnClick(View view) {
-		this.startActivity(new Intent(getApplicationContext(), LandingActivity.class));
-	}
+    public void logOutButtonOnClick(View view) {
+        this.startActivity(new Intent(getApplicationContext(), LandingActivity.class));
+    }
 
-	private TextView getEmployeeWelcomeTextView() {
-		return (TextView)this.findViewById(R.id.text_view_employee_welcome);
-	}
+    private TextView getEmployeeWelcomeTextView() {
+        return (TextView)this.findViewById(R.id.text_view_employee_welcome);
+    }
 
-	private void displayFunctionalityNotAvailableDialog() {
-		new AlertDialog.Builder(this).
-			setMessage(R.string.alert_dialog_functionality_not_available).
-			setPositiveButton(
-				R.string.button_ok,
-				new DialogInterface.OnClickListener() {
-					public void onClick(DialogInterface dialog, int id) {
-						dialog.dismiss();
-					}
-				}
-			).
-			create().
-			show();
-	}
+    private void displayFunctionalityNotAvailableDialog() {
+        new AlertDialog.Builder(this).
+                setMessage(R.string.alert_dialog_functionality_not_available).
+                setPositiveButton(
+                        R.string.button_ok,
+                        new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                dialog.dismiss();
+                            }
+                        }
+                ).
+                create().
+                show();
+    }
 
-	private EmployeeTransition employeeTransition;
+    private EmployeeTransition employeeTransition;
 }

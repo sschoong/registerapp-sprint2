@@ -41,8 +41,8 @@ public class ProductsListingActivity extends AppCompatActivity {
 				Intent intent = new Intent(getApplicationContext(), ProductViewActivity.class);
 
 				intent.putExtra(
-					getString(R.string.intent_extra_product),
-					new ProductTransition((Product) getProductsListView().getItemAtPosition(position))
+						getString(R.string.intent_extra_product),
+						new ProductTransition((Product) getProductsListView().getItemAtPosition(position))
 				);
 
 				startActivity(intent);
@@ -50,8 +50,8 @@ public class ProductsListingActivity extends AppCompatActivity {
 		});
 
 		this.loadingProductsAlert = new AlertDialog.Builder(this).
-			setMessage(R.string.alert_dialog_products_loading).
-			create();
+				setMessage(R.string.alert_dialog_products_loading).
+				create();
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class ProductsListingActivity extends AppCompatActivity {
 		protected Void doInBackground(Void... params) {
 			products.clear();
 			products.addAll(
-				(new ProductService()).getProducts()
+					(new ProductService()).getProducts()
 			);
 
 			return null;
